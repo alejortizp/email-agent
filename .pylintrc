@@ -1,0 +1,22 @@
+[MASTER]
+# Add the project root to the Python path
+init-hook='import sys; sys.path.append("/home/alejo/proyectos/practica_agentes_langchain/practica3/langgraph-email")'
+
+# Specify the root package
+source-roots=src
+
+[MESSAGES CONTROL]
+# Disable specific warnings if needed
+# disable=
+
+[BASIC]
+# Good variable names
+good-names=i,j,k,ex,Run,_,id
+
+[FORMAT]
+# Maximum line length
+max-line-length=100
+
+[IMPORTS]
+# Allow wildcard imports from specific modules if needed
+# allow-wildcard-with-all=no

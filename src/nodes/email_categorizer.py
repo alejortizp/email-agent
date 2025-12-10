@@ -15,5 +15,5 @@ def email_categorizer_node(state: GraphState):
         body = email.body
     #categorizer_agent = AGENT_REGISTRY.get("email_categorizer")
     result = AGENT_REGISTRY["email_categorizer"].invoke({"email": body})
-    state['email_category'] = result['category']
+    state['email_category'] = result.category.value # type: ignore
     return state
