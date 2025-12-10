@@ -59,11 +59,11 @@ def get_most_recent_email() -> Email:
     today = datetime.datetime.now().date()
     query = f'after:{today.strftime("%Y/%m/%d")}'
     try:
-        results = service.users().messages().list(userId='me', q=query, maxResults=1).execute()
+        results = service.users().messages().list(userId='me', q=query, maxResults=1).execute()  # pylint: disable=no-member
         messages = results.get('messages', [])
         if not messages:
             return None
-        msg = service.users().messages().get(userId='me', id=messages[0]['id']).execute()
+        msg = service.users().messages().get(userId='me', id=messages[0]['id']).execute()  # pylint: disable=no-member
         email_data = parse_email_address(msg)
         return email_data
     except Exception as e:
