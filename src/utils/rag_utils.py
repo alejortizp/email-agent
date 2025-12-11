@@ -1,14 +1,14 @@
-from langchain_comunity.document_loaders import Textloader
-from langchain_text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
-from langchain.tools.retriever import create_retriever_tool
+from langchain_core.tools import create_retriever_tool
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 
-loader = Textloader(os.getenv("RAG_FILE_PATH"))
+loader = TextLoader(os.getenv("RAG_FILE_PATH"))
 documents = loader.load()
 text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
     chunk_size=100, chunk_overlap=50

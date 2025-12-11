@@ -9,6 +9,10 @@ class Email(BaseModel):
     sender: str = Field(..., description="The sender of the email")
     subject: str = Field(..., description="The subject of the email")
     body: str = Field(..., description="The body of the email")
+    message_id: str = Field(..., description="Message identifier of the email")
+    references: str = Field(..., description="References of the email")
+    thread_id: str = Field(..., description="Thread identifier of the email")
+
 
 class GraphState(TypedDict):
     current_email: Email | str

@@ -28,13 +28,13 @@ def query_or_email_node(state: GraphState):
         state["email_response"] = ""
         return state
     
-    body, category = email_data
+    category, body = email_data
 
-    result = AGENT_REGISTRY["query_or_email"].invoke(
-        email_category=category,
-        email_content=body,
-        context=""
-    )
+    result = AGENT_REGISTRY["query_or_email"].invoke({
+        "email_category": category,
+        "email_content": body,
+        "context": ""
+    })
 
     return _process_email_writer_result(result=result, state=state)
 
@@ -46,15 +46,15 @@ def email_writer_with_context_node(state: GraphState):
         state["email_response"] = ""
         return state
     
-    body, category = email_data
+    category, body = email_data
 
     context = state.get("messages")[-1].content if state.get("messages") else ""
 
-    result = AGENT_REGISTRY["email_writer_with_context"].invoke(
-        email_category=category,
-        email_content=body,
-        context=""
-    )
+    result = AGENT_REGISTRY["email_writer_with_context"].invoke({
+        "email_category": category,
+        "email_content": body,
+        "context": context
+    })
 
     return _process_email_writer_result(result=result, state=state)
 

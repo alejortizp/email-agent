@@ -13,9 +13,9 @@ def _create_email_writer_chain(user_rag: bool, use_structured_output: bool):
     """Create an email writer chain with configurable RAG and structured output"""
 
     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
-    
+
     if user_rag:
-        llm = llm.with_retriever(get_retriever_tool())
+        llm = llm.bind_tools([get_retriever_tool()])
 
     email_writer_prompt_template = PromptTemplate(
         template=EMAIL_WRITER_PROMPT,
